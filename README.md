@@ -13,7 +13,7 @@ npm install
 npm start
 ```
 
-The server is built with express and is set up to serve the files in this repo. So if you want to test `/stencilJS/tovuti-web-components/www/index.html` simply open your browser and go to `http://localhost:3000/stencilJS/tovuti-web-components/www/index.html`. 
+The server is built with express and is set up to serve the files in this repo for development purposes on your local machine. If you want to test `/stencilJS/tovuti-web-components/www/index.html` simply open your browser and go to `http://localhost:3000/stencilJS/tovuti-web-components/www/index.html`. 
 
 ## StencilJS
 
@@ -21,8 +21,8 @@ StencilJS files are located in `/stencilJS/`.
 
 ## VueJS
 
-StencilJS files are located in `/vue/`.
+Vue files are located in `/vue/`.
 
 ## React
 
-StencilJS files are located in `/react/`.
+React files are located in `/react/`.
