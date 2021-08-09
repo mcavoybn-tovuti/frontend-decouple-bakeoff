@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { applyPolyfills, defineCustomElements } from 'tovuti-web-components/loader';
+import { applyPolyfills, defineCustomElements } from '@tovuti/tovuti-web-components/loader';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import { applyPolyfills, defineCustomElements } from '../../../stencilJS/tovuti-web-components/loader';
+import { applyPolyfills, defineCustomElements } from '@tovuti/tovuti-web-components/loader';
 
 Vue.config.productionTip = false
 
