@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="brands" v-if="option == 'com_axs' && view == 'brands'">
+      <Brands />
+    </div>
+    <div id="brand" v-if="option == 'com_axs' && view == 'brand'">
+      <Brand />
+    </div>
+    <div id="footer">
+      © SiteName 2021
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Brand from './components/Brand';
+import Brands from './components/Brands';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Brand,
+    Brands
+  },
+  data() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return {
+      option: urlParams.get('option'),
+      view: urlParams.get('view'),
+    };
+  },
+  mounted() {
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

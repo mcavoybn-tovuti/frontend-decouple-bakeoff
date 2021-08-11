@@ -3,6 +3,9 @@ import App from './App.vue'
 
 import { applyPolyfills, defineCustomElements } from '@tovuti/tovuti-web-components/loader';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
+
 Vue.config.productionTip = false
 
 // Make Vue ignore custom elements defined outside of Vue
