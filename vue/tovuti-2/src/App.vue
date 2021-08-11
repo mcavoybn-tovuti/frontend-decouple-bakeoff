@@ -6,7 +6,7 @@
     <div id="brand" v-if="option == 'com_axs' && view == 'brand'">
       <Brand />
     </div>
-    <div id="footer">
+    <div id="footer" class="text-center">
       © SiteName 2021
     </div>
   </div>
