@@ -3,6 +3,7 @@
         <div id="action-bar">
             <button class="btn btn-success" @click="save">Save</button>
             <button class="btn btn-secondary" @click="saveAndNew">Save & New</button>
+            <button class="btn btn-danger" @click="cancel">Cancel</button>
         </div>
         <nav id="tabs" class="mt-2">
             <div class="nav nav-tabs" role="tablist">
@@ -134,7 +135,7 @@
                         Language
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        <select class="form-select" data-fieldpath="brand.language" @change="updateBrand" :value="brand.language">
+                        <select class="form-select" v-model="brand.language">
                             <option value="en-GB">English</option>
                             <option value="es-ES">Spanish</option>,
                             <option value="fr-FR">French</option>
@@ -146,7 +147,7 @@
                         Brand Title *
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        <input type="text" class="form-control" data-fieldpath="brand.site_title" @input="updateBrand" :value="brand.site_title">
+                        <input type="text" class="form-control" v-model="brand.site_title">
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -157,9 +158,7 @@
                         <input 
                             type="text" 
                             class="form-control" d
-                            data-fieldpath="brand.email.sitename" 
-                            @input="updateBrand" 
-                            :value="brand.email.sitename"
+                            v-model="brand.email.sitename"
                         >
                     </div>
                 </div>
@@ -168,7 +167,7 @@
                         Site Description
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        <textarea rows="12" class="form-control" data-fieldpath="brand.description" @input="updateBrand" :value="brand.description"></textarea>
+                        <textarea rows="12" class="form-control" v-model="brand.description"></textarea>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -177,26 +176,24 @@
                     </div>
                     <div class="col-lg-4 col-xl-3">
                         <div role="group" id="published" class="btn-group btn-group rounded">
-                            <input 
-                                type="radio"
+                            <input
                                 id="published0"
-                                name="published"
+                                type="radio"
                                 value="1"
                                 checked="checked"
                                 class="btn-check"
-                                data-fieldpath="brand.published" @click="updateBrand"
+                                v-model="brand.published"
                             >			
                             <label 
                                 for="published0"
                                 class="btn btn-outline-success"
                             >Yes</label>		
-                            <input 
-                                type="radio"
+                            <input
                                 id="published1"
-                                name="published"
+                                type="radio"
                                 value="0"
                                 class="btn-check"
-                                data-fieldpath="brand.published" @click="updateBrand"
+                                v-model="brand.published"
                             >
                             <label 
                                 for="published1"
@@ -212,7 +209,7 @@
                         Plans for Active Memebership
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        <select class="form-select" multiple>
+                        <select class="form-select" multiple v-model="brand.site_details.plans_for_active">
                             <option value="1">Registration</option>
                             <option value="2">paid</option>,
                         </select>
@@ -223,13 +220,80 @@
                         Base font for brand
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        <select class="form-select">
+                        <select class="form-select" v-model="brand.site_details.default_font">
                             <option value="Arial">Arial</option>
                             <option value="Verdana">Verdana</option>,
                             <option value="Impact">Impact</option>
                             <option value="Georgia">Georgia</option>
                             <option value="Open Sans">Open Sans</option>
                         </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-xl-2">
+                        Three Color Design
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+                        <div role="group" id="tovuti_root_styles" class="btn-group btn-group rounded">
+                            <input 
+                                type="radio"
+                                id="tovuti_root_styles0"
+                                name="tovuti_root_styles"
+                                value="1"
+                                checked="checked"
+                                class="btn-check"
+                                v-model="brand.site_details.tovuti_root_styles"
+                            >			
+                            <label 
+                                for="tovuti_root_styles0"
+                                class="btn btn-outline-success"
+                            >On</label>		
+                            <input 
+                                type="radio"
+                                id="tovuti_root_styles1"
+                                name="tovuti_root_styles"
+                                value="0"
+                                class="btn-check"
+                                v-model="brand.site_details.tovuti_root_styles"
+                            >
+                            <label 
+                                for="tovuti_root_styles1"
+                                class="btn btn-outline-secondary"
+                            >Off</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4" v-if="brand.site_details.tovuti_root_styles == '1'">
+                    <div class="col-lg-3 col-xl-2">
+                        Primary Color
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+                        <input
+                            type="color" 
+                            v-model="brand.site_details.root_primary_color"
+                        >
+                    </div>
+                </div>
+                <div class="row mb-4" v-if="brand.site_details.tovuti_root_styles == '1'">
+                    <div class="col-lg-3 col-xl-2">
+                        Accent Color
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+                        <input
+                            type="color"
+                            v-model="brand.site_details.root_accent_color"
+                        >
+                    </div>
+                </div>
+                <div class="row mb-4" v-if="brand.site_details.tovuti_root_styles == '1'">
+                    <div class="col-lg-3 col-xl-2">
+                        Base Color
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+                        <input
+                            type="color"
+                            v-model="brand.site_details.root_base_color" 
+                        >
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -245,6 +309,7 @@
                                 value="1"
                                 checked="checked"
                                 class="btn-check"
+                                v-model="brand.site_details.language_selector"
                             >			
                             <label 
                                 for="language_selector0"
@@ -256,6 +321,7 @@
                                 name="language_selector"
                                 value="0"
                                 class="btn-check"
+                                v-model="brand.site_details.language_selector"
                             >
                             <label 
                                 for="language_selector1"
@@ -264,36 +330,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-xl-2">
-                        Primary Color
-                    </div>
-                    <div class="col-lg-4 col-xl-3">
-                        <div>color picker</div>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-xl-2">
-                        Accent Color
-                    </div>
-                    <div class="col-lg-4 col-xl-3">
-                        <div>color picker</div>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-xl-2">
-                        Base Color
-                    </div>
-                    <div class="col-lg-4 col-xl-3">
-                        <div>color picker</div>
-                    </div>
-                </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.site_details.language_selector == '1'">
                     <div class="col-lg-3 col-xl-2">
                         Language
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        <select class="form-select" multiple>
+                        <select 
+                            class="form-select"
+                            multiple
+                            v-model="brand.site_details.language_selector_options"
+                        >
                             <option value="en-GB">English</option>
                             <option value="es-ES">Spanish</option>,
                             <option value="fr-FR">French</option>
@@ -331,6 +377,7 @@
                                 value="1"
                                 checked="checked"
                                 class="btn-check"
+                                v-model="brand.billing.auto_reprocess_declines"
                             >			
                             <label 
                                 for="auto_reprocess_declines0"
@@ -342,6 +389,7 @@
                                 name="auto_reprocess_declines"
                                 value="0"
                                 class="btn-check"
+                                v-model="brand.billing.auto_reprocess_declines"
                             >
                             <label 
                                 for="auto_reprocess_declines1"
@@ -350,39 +398,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.auto_reprocess_declines == '1'">
                     <div class="col-lg-3 col-xl-2">
                         Days Between Rebilling
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        <select id="auto_reprocess_days" name="auto_reprocess_days" aria-invalid="false">
-                            <option value="1" selected="selected">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
+                        <select id="auto_reprocess_days" name="auto_reprocess_days" class="form-select" aria-invalid="false" v-model="brand.billing.auto_reprocess_days">
+                            <option v-for="x in Array(27).keys()" :key="x + 1" :value="x + 1">{{x + 1}}</option>
                         </select>
                     </div>
                 </div>
@@ -391,15 +413,63 @@
                         Bill on Weekends?
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <div role="group" id="weekend_billing" class="btn-group btn-group rounded">
+                            <input 
+                                type="radio"
+                                id="weekend_billing1"
+                                value="1"
+                                checked="checked"
+                                class="btn-check"
+                                v-model="brand.billing.weekend_billing"
+                            >			
+                            <label 
+                                for="weekend_billing1"
+                                class="btn btn-outline-success"
+                            >Yes</label>		
+                            <input 
+                                type="radio"
+                                id="weekend_billing0"
+                                value="0"
+                                class="btn-check"
+                                v-model="brand.billing.weekend_billing"
+                            >
+                            <label 
+                                for="weekend_billing0"
+                                class="btn btn-outline-secondary"
+                            >No</label>
+                        </div>
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.weekend_billing == '0'">
                     <div class="col-lg-3 col-xl-2">
                         No weekend billing fallback
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <div role="group" id="weekend_fallback" class="btn-group btn-group rounded">
+                            <input 
+                                type="radio"
+                                id="weekend_fallback1"
+                                value="1"
+                                checked="checked"
+                                class="btn-check"
+                                v-model="brand.billing.weekend_fallback"
+                            >			
+                            <label 
+                                for="weekend_fallback1"
+                                class="btn btn-outline-success"
+                            >Friday</label>		
+                            <input 
+                                type="radio"
+                                id="weekend_fallback0"
+                                value="0"
+                                class="btn-check"
+                                v-model="brand.billing.weekend_fallback"
+                            >
+                            <label 
+                                for="weekend_fallback0"
+                                class="btn btn-outline-secondary"
+                            >Monday</label>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -407,7 +477,9 @@
                         Late Payment Grace Period
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <select class="form-select" v-model="brand.billing.grace_period" aria-invalid="false">
+                            <option v-for="x in Array(366).keys()" :key="x" :value="x">{{x}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -415,7 +487,31 @@
                         Should we show an alert message for past unpaid subscription periods?
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <div role="group" id="show_unpaid_alert" class="btn-group btn-group rounded">
+                            <input 
+                                type="radio"
+                                id="show_unpaid_alert1"
+                                value="1"
+                                checked="checked"
+                                class="btn-check"
+                                v-model="brand.billing.show_unpaid_alert"
+                            >			
+                            <label 
+                                for="show_unpaid_alert1"
+                                class="btn btn-outline-success"
+                            >Yes</label>		
+                            <input 
+                                type="radio"
+                                id="show_unpaid_alert0"
+                                value="0"
+                                class="btn-check"
+                                v-model="brand.billing.show_unpaid_alert"
+                            >
+                            <label 
+                                for="show_unpaid_alert0"
+                                class="btn btn-outline-secondary"
+                            >No</label>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -423,57 +519,95 @@
                         Select gateway type
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <select id="gateway_type" name="gateway_type" v-model="brand.billing.gateway_type" class="form-select" aria-invalid="false">
+                            <option value="converge">Converge</option>
+                            <option value="authnet">Authorize.Net</option>
+                            <option value="stripe" selected="selected">Stripe</option>
+                            <option value="heartland">Heartland</option>
+                        </select>
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.gateway_type == 'converge'">
                     <div class="col-lg-3 col-xl-2">
                         Account Mode
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <div role="group" id="converge_production_mode" class="btn-group btn-group rounded">
+                            <input 
+                                type="radio"
+                                id="converge_production_mode0"
+                                value="0"
+                                checked="checked"
+                                class="btn-check"
+                                v-model="brand.billing.converge_production_mode"
+                            >			
+                            <label 
+                                for="converge_production_mode0"
+                                class="btn btn-outline-success"
+                            >Development</label>		
+                            <input 
+                                type="radio"
+                                id="converge_production_mode1"
+                                value="1"
+                                class="btn-check"
+                                v-model="brand.billing.converge_production_mode"
+                            >
+                            <label 
+                                for="converge_production_mode1"
+                                class="btn btn-outline-secondary"
+                            >Production</label>
+                        </div>
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.gateway_type == 'converge' && brand.billing.converge_production_mode == '1'">
                     <div class="col-lg-3 col-xl-2">
-                        Production Api Public Key
+                        Production Merchant ID
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <input type="text" class="form-control" v-model="brand.billing.converge_prod_merchant_id">
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.gateway_type == 'converge' && brand.billing.converge_production_mode == '1'">
                     <div class="col-lg-3 col-xl-2">
-                        Production Api Secret Key
+                        Production User ID
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <input type="text" class="form-control" v-model="brand.billing.converge_prod_user_id">
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.gateway_type == 'converge' && brand.billing.converge_production_mode == '1'">
                     <div class="col-lg-3 col-xl-2">
-                        Development Api Public Key
+                        Production PIN
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <input type="text" class="form-control" v-model="brand.billing.converge_prod_account_pin">
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.gateway_type == 'converge' && brand.billing.converge_production_mode == '0'">
                     <div class="col-lg-3 col-xl-2">
-                        Development Api Secret Key
+                        Developer Merchant ID
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <input type="text" class="form-control" v-model="brand.billing.converge_dev_merchant_id">
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="brand.billing.gateway_type == 'converge' && brand.billing.converge_production_mode == '0'">
                     <div class="col-lg-3 col-xl-2">
-                        Hide Zip Code Field
+                        Developer User ID
                     </div>
                     <div class="col-lg-4 col-xl-3">
-                        FieldContent
+                        <input type="text" class="form-control" v-model="brand.billing.converge_dev_user_id">
                     </div>
                 </div>
+                <div class="row mb-4" v-if="brand.billing.gateway_type == 'converge' && brand.billing.converge_production_mode == '0'">
+                    <div class="col-lg-3 col-xl-2">
+                        Developer PIN
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+                        <input type="text" class="form-control" v-model="brand.billing.converge_dev_account_pin">
+                    </div>
+                </div>
+                
             </div>
             <div id="site-logos" class="tab-pane fade mt-4">
                 <div class="row mb-4">
@@ -932,8 +1066,7 @@
 <script>
 import { v4 as uuid } from 'uuid';
 
-import { default as brandsDefault } from '../assets/brands.json';
-// import { default as brandSchema } from '../assets/brandSchema.json';
+import { default as defaultBrandConfig } from '../assets/defaultBrandConfig.json';
 
 export default {
     name: 'Brand',
@@ -945,61 +1078,47 @@ export default {
             brand: {}
         };
     },
-    mounted() {
+    beforeMount() {
+        // this.brands will be removed once we start getting data from the API
         this.brands = JSON.parse(window.localStorage.getItem('brands')) || {};
         this.brand = this.getBrand();
-        //   window.localStorage.setItem('brands', JSON.stringify(brandsDefault));
     },
     methods: {
         save() {
             if (this.id == null) {
+                // This is a new brand, create an id for it and 
+                // push to brands list
                 const newId = uuid();
                 this.id = newId;
                 this.brand.id = newId;
+                this.brands.push(this.brand);
+                window.location.replace('/administrator/index.php?option=com_axs&view=brand&id=' + this.id);
+            } else {
+                // Saving an existing brand, find it in the brands
+                // array and update
+                this.brands.forEach(brand => {
+                    if (brand.id == this.id) {
+                        brand = this.brand;
+                    }
+                });
             }
-
-            this.brands.forEach(brand => {
-                if (brand.id == this.id) {
-                    brand = this.brand;
-                }
-            });
-            console.log(this.brands);
             
             window.localStorage.setItem('brands', JSON.stringify(this.brands));
-            // window.location.replace('/administrator/index.php?option=com_axs&view=brand&id=' + this.id);
         },
         saveAndNew() {
             this.save();
             window.location.replace('/administrator/index.php?option=com_axs&view=brand');
         },
         getBrand() {
-            console.log(this.id);
-            console.log(this.brands);
-            console.log(this.brands.find(brand => brand.id == this.id));
             if (this.id == null) {
-                // Need to get a default brand schema loaded in here
-                window.location.replace('/administrator/index.php?option=com_axs&view=brand&id=' + brandsDefault[0].id);
-                return brandsDefault[0];
+                // Load a brand with blank fields
+                return defaultBrandConfig;
             }
 
             return this.brands.find(brand => brand.id == this.id);
         },
-        updateBrand(e) {
-            console.log(e);
-            var fieldpath = e.target.dataset.fieldpath;
-            var cur = null;
-            fieldpath.split('.').forEach((key, idx, arr) => {
-                console.log(idx);
-                console.log(key);
-                console.log(cur);
-                if (idx == arr.length - 1) {
-                    cur[key] = e.target.value;
-                } else if (idx == 0) {
-                    cur = this[key];
-                } else {
-                    cur = cur[key];
-                }
-            });
+        cancel() {
+            window.location.href = '/administrator/index.php?option=com_axs&view=brands';
         }
     }
 }

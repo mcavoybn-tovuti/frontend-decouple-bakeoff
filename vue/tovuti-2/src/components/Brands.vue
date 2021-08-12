@@ -4,10 +4,11 @@
             <h1>Tovuti: Brands</h1>
         </div>
         <div id="action-bar">
-            <button class="btn btn-success">New</button>
-            <button class="btn btn-success">Publish</button>
-            <button class="btn btn-warning">Unpublish</button>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-success" @click="goToNewBrandPage">New</button>
+            <button class="btn btn-success" @click="batchPublish">Publish</button>
+            <button class="btn btn-warning" @click="batchUnpublish">Unpublish</button>
+            <button class="btn btn-danger" @click="batchDelete">Delete</button>
+            <button class="btn btn-warning float-end" @click="resetBrandsData">Load Dummy Brands Data</button>
         </div>
         <div id="filters">
             <div class="row">
@@ -36,7 +37,7 @@
                     <tr v-for="brand in brands" :key="brand.id">
                         <th scope="row">1</th>
                         <td><input type="checkbox"></td>
-                        <td><a :href="brand.url">{{ brand.siteTitle }}</a></td>
+                        <td><a :href="getBrandUrl(brand.id)">{{ brand.site_title }}</a></td>
                         <td>{{ brand.language }}</td>
                         <td>{{ brand.favicon }}</td>
                         <td>{{ brand.domains }}</td>
@@ -49,35 +50,50 @@
 </template>
 
 <script>
-// import api from '../tovuti-api';
+import { default as brandsDefault } from '../assets/brands.json';
 
 export default {
-  name: 'Brands',
-  props: {
-  },
-  data() {
-      return {
+    name: 'Brands',
+    data() {
+        return {
             brands: []
-      }
-  },
-  mounted() {
-      this.brands = this.getBrands();
-  },
-  methods: {
-      getBrands: function() {
-            return [
-                {
-                    id: 1,
-                    siteTitle: 'Site Title', 
-                    language: 'en-GB', 
-                    favicon: '',
-                    domains: 'dev-ben.tovuti.io,dev-ben.tovuti.net',
-                    description: '',
-                    url: '/administrator/?index.php&option=com_axs&view=brand&id=1'
-                }
-            ];
-      }
-  }
+        }
+    },
+    mounted() {
+        this.brands = this.getBrands();
+    },
+    methods: {
+        getBrands() {
+            return JSON.parse(window.localStorage.getItem('brands'));
+        },
+        resetBrandsData() {
+            window.localStorage.setItem('brands', JSON.stringify(brandsDefault));
+            this.brands = window.localStorage.getItem('brands');
+        },
+        getBrandUrl(id) {
+            return '/administrator/?index.php&option=com_axs&view=brand&id=' + id;
+        },
+        goToNewBrandPage() {
+            window.location.href ='/administrator/index.php?option=com_axs&view=brand';
+        },
+        batchPublish() {
+            // Get all the checked brand rows and set published = 1
+        },
+        batchUnpublish() {
+            // Get all the checked brand rows and set published = 0
+        },
+        batchDelete() {
+            // Get all the checked brand rows and delete from db or set trashed = 0
+        },
+        filterBy(fieldpath) {
+            // Filter based on the fieldpath
+            return fieldpath;
+        },
+        orderBy(fieldpath) {
+            // Order by based on the fieldpath
+            return fieldpath;
+        }
+    }
 }
 </script>
 
