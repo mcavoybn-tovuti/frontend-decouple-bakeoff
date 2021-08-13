@@ -6,6 +6,16 @@ import { applyPolyfills, defineCustomElements } from '@tovuti/tovuti-web-compone
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
+// Require Froala Editor js file.
+require('froala-editor/js/froala_editor.pkgd.min.js')
+
+// Require Froala Editor css files.
+require('froala-editor/css/froala_editor.pkgd.min.css')
+require('froala-editor/css/froala_style.min.css')
+import VueFroala from 'vue-froala-wysiwyg'
+Vue.use(VueFroala)
+
+
 Vue.config.productionTip = false
 
 // Make Vue ignore custom elements defined outside of Vue
