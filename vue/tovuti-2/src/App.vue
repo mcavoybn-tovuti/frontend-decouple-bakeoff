@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 import Brand from './components/Brand';
 import Brands from './components/Brands';
 
@@ -35,5 +34,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
+.foo {
+  color:black;
+}
+.bar {
+  @extend .foo;
+}
 </style>

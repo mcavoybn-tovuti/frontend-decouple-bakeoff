@@ -1,0 +1,83 @@
+.tov-admin-actionbar {
+    background-color: $gray-200;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    border-bottom: 1px solid #ccc;
+    padding-left: 11px;
+    margin-left: 2px;
+
+    button {
+        @extend .shadow-sm;
+        // @extend .btn-outline-secondary;
+        // @extend .bg-light;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .btn-wrapper {
+        padding: 15px 0px 10px 10px;
+    }
+
+    .button-new, .button-publish, .button-apply {
+        @extend .btn-success;
+    }
+
+    .button-unpublish {
+        @extend .btn-warning;
+    }
+
+    .button-save, .button-save-copy, .button-save-new {
+        @extend .btn-outline-success;
+    }
+
+    .button-cancel,  
+    #toolbar-delete button,
+    #toolbar-trash button {
+        @extend .btn-danger;
+    }
+
+    .icon-publish:before,
+    .icon-delete:before,
+    .icon-cancel:before {
+        @extend .text-white;
+    }
+
+    .icon-unpublish:before {
+        @extend .text-dark;
+    }
+
+}
+
+.tov-admin-header-corner {
+    position:absolute;
+    width: 12px;
+    height: 12px;
+    background: $tov-light-blue;
+    -webkit-mask-image: radial-gradient(circle 12px at bottom right, transparent 0, transparent 12px, black 13.125px);
+    top:0;
+    left:0;
+}
+
+.tov-admin-actionbar-corner {
+    position:absolute;
+    width: 12px;
+    height: 12px;
+    background: $gray-200;
+    -webkit-mask-image: radial-gradient(circle 12px at bottom right, transparent 0, transparent 12px, black 13.125px);
+    bottom:-12px;
+    left:0;
+
+    .btn {
+        margin-bottom: $spacer * .5;
+        margin-right: $spacer * .5;
+
+        svg {
+            margin-right: $spacer * .5;
+        }
+    }
+
+  }
+  

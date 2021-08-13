@@ -1,0 +1,102 @@
+.tov-admin-sidenav-container {
+    background: $tov-light-blue;
+    height: calc(100% - 72px);
+    top:72px;
+    width: 280px;
+    margin-left:4.5rem;
+    position:fixed !important;
+}
+
+.tov-admin-sidenav-corner {
+    position:fixed;
+    width: 12px;
+    height: 12px;
+    background: $tov-blue;
+    -webkit-mask-image: radial-gradient(circle 12px at bottom right, transparent 0, transparent 12px, black 13.125px);
+    top:72px;
+    left:0;
+    margin-left:4.5rem;
+  }
+
+.tovSubSideNavTitle {
+    margin-bottom:0;
+    padding-left: $spacer * 1.5;
+    min-height: 60px;
+    display:flex;
+    align-items: center;
+    color: $gray-500;
+    letter-spacing: .2rem;
+    font-size: 12px;
+    text-transform: uppercase;
+
+    svg {
+        color: $tov-orange;
+        margin-right: $spacer;
+    }
+
+    &:first-of-type {
+    // padding: $spacer 0;
+    // padding-left: $spacer * 1.5;
+    // padding-top:0;
+    }
+
+    &:last-of-type {
+        // padding-top: $spacer * 0 !important;
+    }
+}
+
+.tov-admin-sidenav-container .nav {
+    display: flex;
+    width:100%;
+    padding: 0 $spacer * .5;
+    margin-bottom: 0;
+    list-style: none;
+    flex-direction: column;
+  }
+  
+.tov-admin-sidenav-container .nav-link {
+    display: flex;
+    align-items: center;
+    padding: $spacer * .6825;
+    padding-left: $spacer;
+    @include font-size($nav-link-font-size);
+    font-weight: $nav-link-font-weight;
+    color: $white;
+    border-radius: $border-radius-xl;
+    margin-bottom: $spacer * .5;
+    text-decoration: if($link-decoration == none, null, none);
+    @include transition($nav-link-transition);
+    font-size: $font-size-base * .8;
+
+    &:hover {
+      color: $white;
+      background-color: $tov-blue;
+      text-decoration: if($link-hover-decoration == underline, none, null);
+    }
+
+    &:focus {
+      color: $white;
+      background-color: $tov-blue;
+      text-decoration: if($link-hover-decoration == underline, none, null);
+    }
+  
+    // Disabled state lightens text
+    &.disabled {
+      color: $nav-link-disabled-color;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    span.badge {
+        margin-left: $spacer * .5;
+        margin-top:0;
+    }
+  }
+
+  
+.tov-admin-sidenav-container .nav-link.active,
+.tov-admin-sidenav-container .nav-item.show .nav-link {
+    color: $white;
+    background-color: $tov-blue;
+    // border-color: $nav-tabs-link-active-border-color;
+  }

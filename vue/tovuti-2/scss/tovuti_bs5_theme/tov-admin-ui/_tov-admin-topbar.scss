@@ -1,0 +1,39 @@
+.tov-admin-topbar-container {
+    width:100%;
+    position:fixed;
+    background-color: $tov-blue;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+.tov-admin-topbar-left {
+
+    .tov-logo {
+        width: 4.5rem;
+        height: 4.5rem;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+    }
+}
+
+.tov-admin-topbar-right {
+    display:flex;
+    align-items: center;
+    padding-top: $spacer * .5;
+    padding-bottom: $spacer * .5;
+    padding-right: $spacer * .5;
+
+    p {
+        color: $white;
+        margin-bottom: $spacer * 0;
+        margin-right: $spacer * .5;
+    }
+
+    .btn {
+        margin-bottom: 0 !important;
+    }
+    
+}

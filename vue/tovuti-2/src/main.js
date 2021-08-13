@@ -6,6 +6,9 @@ import { applyPolyfills, defineCustomElements } from '@tovuti/tovuti-web-compone
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
+import '../scss/tovuti-template.scss';
+
+
 // Require Froala Editor js file.
 require('froala-editor/js/froala_editor.pkgd.min.js')
 

@@ -1,0 +1,25 @@
+.tov-admin-page-content-container {
+    margin-left:22rem;
+    position: relative;
+    top:72px;
+    height: calc(auto - 72px);
+    // background-color: $gray-100;
+    margin-top:-12px;
+
+.tov-admin-page-content-corner {
+    position:sticky;
+    width: 12px;
+    height: 12px;
+    background: $tov-light-blue;
+    -webkit-mask-image: radial-gradient(circle 12px at bottom right, transparent 0, transparent 12px, black 13.125px);
+    top:72px;
+    left:0;
+    align-self: flex-start;
+    z-index: 100;
+  }
+
+}
+
+.tov-admin-page-content {
+    padding: $spacer;
+}

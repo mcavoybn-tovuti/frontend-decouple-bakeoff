@@ -1,0 +1,735 @@
+// import icon libraries
+@use "./icomoon";
+@use "./tovuti-icons";
+@use "../fonts/fonts";
+
+// $primary:#007aff;
+// $success: #faa21b;
+// $danger:#e9892e;
+// $light: #007aff;
+// $dark: red;
+
+$font-family-base:
+// Tovuti Default Font
+'TovutiInter',
+// Cross-platform generic font family (default user interface font)
+system-ui,
+// Safari for macOS and iOS (San Francisco)
+-apple-system,
+// Chrome < 56 for macOS (San Francisco)
+BlinkMacSystemFont,
+// Windows
+"Segoe UI",
+// Android
+Roboto,
+// Basic web fallback
+"Helvetica Neue", Arial,
+// Linux
+"Noto Sans",
+"Liberation Sans",
+// Sans serif fallback
+sans-serif,
+// Emoji fonts
+"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+@import "./tovuti_bs5_theme/theme";
+
+// don't underline anchor tags
+a {
+    text-decoration: none;
+}
+
+// enable font anti-aliasing
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// this id is used in com_eshop, com_kunena, com_community,
+// com_associations, com_banners, com_converge, com_easyblog,
+// com_jbusinessdirectory on the main form shown on the page
+// [name="adminForm"] {
+//     @extend .my-2;
+//     @extend .mx-2;
+// }
+
+// Set the bg color of the .subform-repeatable-group so it doesn't go
+// trans
+.subform-repeatable-group {
+    @extend .bg-white;
+}
+
+.hover-red:hover {
+    color: red;
+}
+
+// bind form classes to all input types and selects too
+// this way we don't need to add .form-control to every single
+// input 
+input[type="text"],
+textarea,
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="date"]
+{
+    @extend .form-control;
+}
+select {
+    @extend .form-select;
+}
+input[type="radio"],
+input[type="checkbox"] {
+    @extend .form-check-input;
+}
+
+
+input[type="range"] {
+    @extend .form-range;
+}
+
+// bootstrap 5 inputs, textareas, and selects are flex
+// elements now. as a result, the usual conventions of input styling no
+// longer apply. 
+// this is a bit of a workaround where we set a default width for all input
+// elements:
+input, textarea, select {
+    max-width: 306px;
+}
+// then if you want to adjust the width, you can use these utility classes
+// (or provide an inline style with max-width)
+.input-large {
+    max-width: 210px;
+}
+.input-medium {
+    max-width: 150px;
+}
+.input-small {
+    max-width: 90px;
+}
+.full-width-input {
+    max-width: unset;
+}
+
+@media only screen and (max-width: 600px) {
+    .hidden-phone {
+        display: none;
+    }
+  }
+
+// these blocks appear as the help text below FOF form fields
+.help-block {
+    @extend .mt-1;
+    @extend .text-secondary;
+    font-size: small;
+}
+
+// image sizes are limited by their parent container size
+img {
+    max-width: 100%;
+}
+
+// content of all FOF form nav tabs
+#formNavContent {
+    padding: 30px;
+}
+
+.alert-error {
+    @extend .alert-danger;
+}
+
+.element-invisible {
+    @extend .d-none;
+}
+
+// make the input[type="color"] a bit wider so we can read the rgb value
+.minicolors-theme-bootstrap .hex {
+    width: 100px;
+    height: 34px;
+}
+
+// this is a workaround for com_community buttons
+// there are some conflicts between bootstrap 5, 
+// bootstrap 3, and ace style rules and this
+// helps to resolve those
+#js-cpanel {
+    .btn-wrapper {
+        .btn {
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(153,153,153,0.1);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(153,153,153,0.1);
+            box-shadow: 0px 0px 5px 0px rgba(153,153,153,0.1);
+        }
+    }
+    
+}
+
+.tag {
+    @extend .badge;
+    @extend .bg-primary;
+}
+
+.container-title {
+    .page-title {
+        span {
+            margin-right:15px;
+        }
+    }
+}
+
+// These are the filter bars at the top of the thing
+.js-stools, #filelocker, #adminForm > *:not(.nav-tabs)  {
+    @extend .mt-3;
+    @extend .mb-4;
+    @extend .ps-4;
+    @extend .pe-4;
+}
+
+// Plural view tables
+// #itemsList, #itemList {
+//     @extend .ms-4;
+//     @extend .me-4;
+// }
+
+#adminForm .nav-tabs {
+    @extend .ps-4;
+}
+
+
+// -- TOVUTI CONTAINER RULES --
+// Title that appears above each view, right below the top nav
+.container-title {
+    // 65px is the current height of the topnav
+    margin-top: 37px;
+    color: white;
+    padding: 10px 0px 10px 10px;
+
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(209,209,209,1);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(209,209,209,1);
+    box-shadow: 0px 5px 5px 0px rgba(209,209,209,1);
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0px;
+    }
+}
+
+.white-ninja-icon {
+    width: 20px;
+}
+
+.row-fluid .span10 {
+    width: 99%;
+}
+
+a.menu_slot {
+    display: block;
+    text-decoration: none;
+}
+
+.sub-admin-menu {
+    position: absolute;
+    background: #314458;
+    top: 65px;
+    left: 32px;
+    padding-right: 5px;
+    padding-top: 5px;
+    height: 100%;
+    width: 170px;
+    z-index: 5;
+}
+
+.sub-admin-menu .menu_title {
+    font-size: 15px;
+    padding-left: 0px;
+    margin-top: 11px;
+    display: block;
+    width: 100%;
+    border-bottom: solid 1px #ea8936;
+    text-align: center;
+    color: #ea8936;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/*.parent-menu-item {
+        z-index: 0;
+    }*/
+
+/* TOOLTIP */
+.tovuti-tooltip {
+    position: relative;
+    overflow: hidden;
+}
+
+.tovuti-tooltip:hover {
+    overflow: visible;
+}
+
+.tovuti-tooltip:hover .tovuti-tooltip-content {
+    opacity: 1;
+    z-index: 10;
+}
+
+.tovuti-tooltip .tovuti-tooltip-content {
+    background: #ea8936;
+    display: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    padding: 1em;
+    position: absolute;
+    opacity: 0;
+    transition: all .3s ease;
+    z-index: 0;
+}
+
+.tovuti-tooltip .tovuti-tooltip-content::after {
+    background: #ea8936;
+    content: "";
+    height: 10px;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 10px;
+}
+
+.tovuti-tooltip.top .tovuti-tooltip-content {
+    bottom: calc(100% + 1.5em);
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.tovuti-tooltip.top .tovuti-tooltip-content::after {
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
+}
+
+.tovuti-tooltip.bottom .tovuti-tooltip-content {
+    bottom: calc(-100% - 1.8em);
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.tovuti-tooltip.bottom .tovuti-tooltip-content::after {
+    top: -5px;
+}
+
+.tovuti-tooltip.right .tovuti-tooltip-content {
+    left: 40px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.tovuti-tooltip.right .tovuti-tooltip-content::after {
+    left: -5px;
+    margin-top: -5px;
+    top: 50%;
+}
+
+.tovuti-tooltip.left .tovuti-tooltip-content {
+    right: calc(100% + 1.5em);
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.tovuti-tooltip.left .tovuti-tooltip-content::after {
+    right: -5px;
+    margin-top: -5px;
+    top: 50%;
+}
+
+.tovuti-admin-header {
+    width: 100%;
+    height: 65px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0px 10px 4px 0px rgba(0,0,0,0.06);
+    -moz-box-shadow: 0px 10px 4px 0px rgba(0,0,0,0.06);
+    box-shadow: 0px 10px 4px 0px rgba(0,0,0,0.06);
+}
+
+// #admin_menu_buttons {
+//     margin-top: 75px
+// }
+
+.admin-icon {
+    float: left;
+    line-height: 65px;
+    font-size: 18px;
+}
+
+
+#tovuti-admin-search {
+    margin-top: 15px;
+}
+
+.admin-icon-logout {
+    float: right;
+    line-height: 65px;
+    font-size: 20px;
+    margin-right: 25px;
+}
+
+.admin-icon a {
+    color: #283848;
+    cursor: pointer;
+
+}
+
+.admin-icon a:hover {
+    color: #ea8936;
+}
+
+
+.admin-icon-logout a {
+    color: #ffffff;
+    cursor: pointer;
+
+}
+
+.admin-icon-logout a:hover {
+    color: #ea8936;
+
+}
+
+.tovuti-admin-logo-wrap {
+    height: 65px;
+    margin-left: -7px;
+    float: left;
+    position: relative;
+    padding: 10px;
+}
+
+.tovuti-admin-logo {
+    height: 43px;
+}
+
+
+// com_media file browser rules start
+.thumbnails > li {
+    float: left;
+    margin-bottom: 30px;
+    margin-left: 40px;
+    display: inline;
+}
+
+.height-80 {
+    height: 80px;
+}
+
+.width-80 {
+    width: 80px;
+}
+
+.thumbnail {
+    display: block;
+    padding: 4px;
+    line-height: 20px;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.thumbnails {
+    margin-left: -20px;
+    list-style: none;
+}
+
+.center {
+    text-align: center;
+}
+
+// com_media file broser rules end
+
+
+// legacy layout.css 
+
+/*#js-cpanel .navbar .brand,
+#js-cpanel #jomsocial-version,
+#ijoomla-logo img,
+td #cpanel,*/
+
+.btn-toolbar #toolbar-edit {
+    display: none;
+}
+
+#sbox-window {height:auto !important;}
+
+.sbox-content-iframe iframe {height:550px !important;}
+
+.admin_sidebar .right {
+    float: inherit !important;
+}
+
+#toolbar-help {
+    display: none;
+}
+
+.td-width-300 {
+    width:300px;
+}
+
+.widthFull {
+    width:100%;
+}
+
+.eventlist select {
+    height: 500px;
+}
+
+.biglist {
+    width:  350px !important;
+    height: 500px !important;
+}
+
+.copyright,
+.xcopyright,
+#js-cpanel .well,
+#js-cpanel .widget-toolbar>a,
+#kunena #j-sidebar-container
+{
+    display: none;
+}
+
+.ibox-title h5 {
+    
+    float: none; 
+}
+
+div.modal.hide.in iframe {
+    border: none;
+    width: 100%;
+    height: 500px;
+}
+
+div.modal.hide.in {
+    width: 80%;
+}
+
+
+#filter_group_id_chzn {
+    min-width: 220px;
+}
+.field-calendar {
+	display: inline-block;
+}
+#system-message-container li{
+	list-style:none;
+}
+
+.admin-logo {
+	cursor: pointer;
+}
+
+div#fd.eb .app-sidebar {
+    background: #fff;
+    display: table-cell;
+    width: 250px;
+    border-right: 1px solid #cfcfcf;
+    padding: 15px 25px 60px;
+}
+
+#js-cpanel .sidebar {
+    width: 189px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-right: 1px solid #cfcfcf;
+    background: #fff;
+}
+#js-cpanel .nav-list>li {
+    border-bottom: 1px solid #cfcfcf;
+}
+
+#js-cpanel .nav-list>li>a {
+    display: block;
+    background-color: #fff;
+    color: #555;
+}
+
+#js-cpanel .nav-list>li.open>a {
+    background-color: #eee;
+    color: #555;
+}
+
+#js-cpanel .nav-list>li .submenu {
+    color: #555;
+    background-color: #eee;
+}
+
+#js-cpanel .nav-list>li .submenu>li>a {
+    color: #555;
+    background-color: #eee;
+}
+
+#js-cpanel .nav-list>li .submenu>.active>a,
+#js-cpanel .nav-list>li .submenu>li>a:hover,
+#js-cpanel .nav-list>li .submenu>li>a:focus,
+#js-cpanel .nav-list>li .submenu>.active>a:hover,
+#js-cpanel .nav-list>li .submenu>.active>a:focus,
+#js-cpanel .nav-list>li .submenu>li a>[class*="icon-"]:first-child {
+    color: #fff;
+    background-color: #777;
+}
+
+#js-cpanel .sidebar-collapse {
+    background-color: #fff;
+    text-align: center;
+    padding: 3px 0;
+    height: 30px;
+    position: relative;
+}
+
+.nano {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.nano > .nano-content {
+    position: absolute;
+    overflow: scroll;
+    overflow-x: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.nano > .nano-content:focus {
+    outline: thin dotted;
+}
+
+.nano > .nano-content::-webkit-scrollbar {
+    display: none;
+}
+
+.has-scrollbar > .nano-content::-webkit-scrollbar {
+    display: block;
+}
+
+.nano > .nano-pane {
+    background: rgb(64, 64, 64);
+    position: absolute;
+    width: 10px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    visibility: hidden\9;
+    opacity: .01;
+    -webkit-transition: .1s;
+    -moz-transition: .1s;
+    -o-transition: .1s;
+    transition: .1s;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.nano > .nano-pane > .nano-slider {
+    background: #777;
+    position: relative;
+    margin: 0 1px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.nano:hover > .nano-pane,
+.nano-pane.active,
+.nano-pane.flashed {
+    visibility: visible\9;
+    opacity: 0.99;
+}
+
+
+
+.clickable {
+    cursor: pointer;
+}
+
+#dashboard_view_area {
+    background-color: #fcfcfc;
+}
+
+.highlight:hover,
+.highlight:active,
+.highlight:focus {
+    background-color: #ea8936 !important;
+    cursor: pointer;
+}
+
+.sidebar_change_width {
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    right: 10px;
+    top: 10px;
+}
+
+.menu_expand {
+    float: right;
+    color: #ffffff;
+}
+
+.sidebar_change_width {
+    font-size: 20px;
+}
+
+.menu_icon {
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 30px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.menu_text {
+    color: #fcfcfc;
+    font-size: 13px;
+}
+
+.menu_title_area {
+    font-size: 22px;
+    color: white;
+    padding: 10px;
+}
+
+.indent_text .menu_text {
+    padding-left: 20px;
+}
+
+.menu_slot {
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+#modulesModal > .modal-dialog > .modal-content > .modal-body {
+    background-image: url('/administrator/components/com_axs/assets/img/gears.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#modulesModal {
+    z-index: 1061;
+}

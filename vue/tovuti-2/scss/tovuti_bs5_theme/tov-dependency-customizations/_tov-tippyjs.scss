@@ -1,0 +1,55 @@
+
+@import '/node_modules/tippy.js/dist/svg-arrow.css';
+
+.tippy-box[data-theme~=tovuti]
+{
+    background-color:$tov-blue;
+    font-weight:600;
+    padding: $nav-link-padding-y $nav-link-padding-x;
+    // padding: $nav-link-padding-y $nav-link-padding-x $nav-link-padding-y 0;
+    // border-radius: 0 $border-radius-xl $border-radius-xl 0;
+    border-radius: $border-radius-xl;
+    min-height:58px;
+    font-size: $font-size-base;
+    display: flex;
+    align-items: center;
+    left: 6px !important;
+    top:-4px;
+    box-shadow: $box-shadow-xl;
+    // border-left: $tov-orange 4px solid;
+      border: $tov-blue solid 1px;
+}
+
+.tippy-box[data-theme~=tovuti]>.tippy-arrow
+{
+}
+
+.tippy-box[data-theme~=tovuti][data-placement^=top]>.tippy-arrow:before
+{
+    border-top-color: $tov-orange;
+}
+
+.tippy-box[data-theme~=tovuti][data-placement^=bottom]>.tippy-arrow:before
+{
+    border-bottom-color: $tov-orange;
+}
+
+.tippy-box[data-theme~=tovuti][data-placement^=left]>.tippy-arrow:before
+{
+    border-left-color: $tov-orange;
+}
+
+.tippy-box[data-theme~=tovuti][data-placement^=right]>.tippy-arrow:before
+{
+    border-right-color: $tov-orange;
+}
+
+.tippy-box[data-theme~=tovuti]>.tippy-backdrop
+{
+    background-color: $tov-orange;
+}
+
+.tippy-box[data-theme~=tovuti]>.tippy-svg-arrow
+{
+    fill: $tov-orange;
+}

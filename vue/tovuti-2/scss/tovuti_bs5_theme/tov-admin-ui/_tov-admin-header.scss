@@ -1,0 +1,18 @@
+.tov-admin-header {
+    background-color: $tov-light-blue;
+    color: $white;
+    padding: $spacer;
+    display: flex;
+    align-items: center;
+
+    i {
+        font-size: $h1-font-size;
+    }
+    
+    h5 {
+        font-size: $h4-font-size;
+        font-weight: $font-weight-bold;
+        margin-left: $spacer;
+        margin-bottom: 0;
+    }
+}

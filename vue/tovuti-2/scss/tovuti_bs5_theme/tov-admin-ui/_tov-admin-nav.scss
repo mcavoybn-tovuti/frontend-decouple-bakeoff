@@ -1,0 +1,61 @@
+.tov-admin-nav-container {
+  display: flex;
+  position: fixed !important;
+    background-color: $tov-blue;
+    padding-top: $spacer * .5;
+    padding-left: $spacer * .5;
+    padding-right: $spacer * .5;
+    height: calc(100% - 72px);
+    top:72px;
+    width: 4.5rem;
+
+}
+
+
+.tov-admin-nav-container .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  
+.tov-admin-nav-container .nav-link {
+    display: block;
+    padding: $spacer $nav-link-padding-x;
+    @include font-size($nav-link-font-size);
+    font-weight: $nav-link-font-weight;
+    color: $white;
+    border-radius: $border-radius-xl;
+    margin-bottom: $spacer * .5;
+    text-decoration: if($link-decoration == none, null, none);
+    @include transition($nav-link-transition);
+  
+    &:hover {
+      color: $white;
+      background-color: $tov-light-blue;
+      text-decoration: if($link-hover-decoration == underline, none, null);
+    }
+
+    &:focus {
+      color: $white;
+      background-color: $tov-orange;
+      text-decoration: if($link-hover-decoration == underline, none, null);
+    }
+  
+    // Disabled state lightens text
+    &.disabled {
+      color: $nav-link-disabled-color;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+
+  
+.tov-admin-nav-container .nav-link.active,
+.tov-admin-nav-container .nav-item.show .nav-link {
+    color: $white;
+    background-color: $tov-orange;
+    border: $tov-orange solid 1px;
+  }

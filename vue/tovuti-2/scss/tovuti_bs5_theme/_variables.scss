@@ -1,0 +1,34 @@
+
+
+
+// scss-docs-start color-variables
+$tov-blue:    #1E2935 !default;
+$tov-light-blue: #374151 !default;
+$tov-orange:  #E9892E !default;
+$tov-primary: #1266f1 !default;
+$tov-secondary: #504d52 !default;
+$tov-success: #008031 !default;
+$tov-info: #39c0ed !default;
+$tov-warning: #ffa900 !default;
+$tov-danger: #df1033 !default;
+// scss-docs-end color-variables
+
+
+// scss-docs-start theme-color-variables
+$primary:       $tov-primary !default;
+$secondary:     $tov-secondary !default;
+$success:       $tov-success !default;
+$info:          $tov-info !default;
+$warning:       $tov-warning !default;
+$danger:        $tov-danger !default;
+
+// scss-docs-end theme-color-variables
+
+$input-btn-focus-width:         0.25rem !default;
+
+
+// scss-docs-start border-radius-variables
+$border-radius-xl:            .5rem !default;
+
+
+$box-shadow-xl:               0 1rem 3rem rgba($black, .35) !default;

@@ -1,0 +1,49 @@
+
+//
+// Tabs
+//
+
+.nav-tabs {
+  border-bottom: $nav-tabs-border-width solid $nav-tabs-border-color;
+  background-color: $white;
+
+  .nav-link {
+    margin-bottom: -$nav-tabs-border-width;
+    color: $secondary;
+    background: none;
+    border: none;
+    // margin-right:$spacer;
+    padding: $spacer;
+    border-bottom: transparent 2px solid;
+
+    &:hover,
+    &:focus {
+      color: $gray-800;
+      border-color: $nav-tabs-link-hover-border-color;
+      // Prevents active .nav-link tab overlapping focus outline of previous/next .nav-link
+      isolation: isolate;
+      border-bottom: $gray-500 2px solid;
+    }
+
+    &.disabled {
+      color: $nav-link-disabled-color;
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.show .nav-link {
+    color: $primary;
+    background-color: $nav-tabs-link-active-bg;
+    // border-color: $nav-tabs-link-active-border-color;
+    border-bottom: $primary 2px solid;
+  }
+
+  .dropdown-menu {
+    // Make dropdown border overlap tab border
+    margin-top: -$nav-tabs-border-width;
+    // Remove the top rounded corners here since there is a hard edge above the menu
+    @include border-top-radius(0);
+  }
+}
