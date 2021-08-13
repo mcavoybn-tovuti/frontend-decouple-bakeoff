@@ -1,9 +1,11 @@
 <template>
     <div id="brand-container" class="container-flex text-start">
-        <div id="action-bar">
-            <button class="btn btn-success" @click="save">Save</button>
-            <button class="btn btn-secondary" @click="saveAndNew">Save & New</button>
-            <button class="btn btn-danger" @click="cancel">Cancel</button>
+        <div id="action-bar" class="tov-admin-actionbar p-3">
+            <button class="btn btn-success" @click="save"><span class="icon-apply icon-white" aria-hidden="true"></span>Save</button>
+            <button class="btn btn-outline-success" @click="() => { save();cancel(); }"><span class="icon-save" aria-hidden="true"></span>Save & Close</button>
+            <button class="btn btn-outline-success" @click="saveAndNew"><span class="icon-save-new" aria-hidden="true"></span>Save & New</button>
+            <button class="btn btn-outline-success" @click="saveAsCopy"><span class="icon-save-copy" aria-hidden="true"></span>Save as Copy</button>
+            <button class="btn btn-danger" @click="cancel"><span class="icon-cancel" aria-hidden="true"></span>Cancel</button>
         </div>
         <nav id="tabs" class="mt-2">
             <div class="nav nav-tabs" role="tablist">
@@ -1262,15 +1264,16 @@ export default {
         },
         cancel() {
             window.location.href = '/administrator/index.php?option=com_axs&view=brands';
+        },
+        saveAsCopy() {
+            this.id = null;
+            this.save();
         }
     }
 }
 </script>
 
 <style scoped>
-    #brand-container {
-        margin: 5px;
-    }
     #title-bar {
         color: white;
         background-color: #374151;
@@ -1281,7 +1284,7 @@ export default {
     }
     #action-bar .btn {
         margin-top: 5px;
-        margin-right: 5px;
+        margin-right: 12px;
     }
     .help-block {
         font-size: small;
