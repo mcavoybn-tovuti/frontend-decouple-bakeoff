@@ -7,6 +7,10 @@
             <button class="btn btn-outline-success" @click="saveAsCopy"><span class="icon-save-copy" aria-hidden="true"></span>Save as Copy</button>
             <button class="btn btn-danger" @click="cancel"><span class="icon-cancel" aria-hidden="true"></span>Cancel</button>
         </div>
+        <div class="alert alert-success m-2" :class="{'d-none': !showSaveSuccessAlert}">
+            <h4 class="alert-heading">Success</h4>
+            <p>Brand Saved Successfully</p>
+        </div>
         <nav id="tabs" class="mt-2">
             <div class="nav nav-tabs" role="tablist">
                 <button 
@@ -1221,6 +1225,7 @@ export default {
                     }
                 }
             },
+            showSaveSuccessAlert: false
         };
     },
     beforeMount() {
@@ -1247,6 +1252,9 @@ export default {
                     }
                 });
             }
+
+            this.showSaveSuccessAlert = true;
+            setTimeout(() => this.showSaveSuccessAlert = false, 3000);
             
             window.localStorage.setItem('brands', JSON.stringify(this.brands));
         },
