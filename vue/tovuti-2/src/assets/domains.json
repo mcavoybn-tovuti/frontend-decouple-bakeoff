@@ -1,0 +1,13 @@
+[
+   {
+      "id":"1",
+      "domain": "dev-ben.tovuti.io",
+      "default_domain": "1",
+      "created_date": "2021-04-07",
+      "params": {
+         "language":"en-GB",
+         "brand":""
+      },
+      "ssl_id": ""
+   }
+]

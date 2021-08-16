@@ -6,6 +6,12 @@
     <div id="brand" v-if="option == 'com_axs' && view == 'brand'">
       <Brand />
     </div>
+    <div id="domains" v-if="option == 'com_domains' && view == 'domains'">
+      <Domains />
+    </div>
+    <div id="domain" v-if="option == 'com_domains' && view == 'domain'">
+      <Domain />
+    </div>
     <div id="footer" class="text-center">
       © SiteName 2021
     </div>
@@ -15,12 +21,16 @@
 <script>
 import Brand from './components/Brand';
 import Brands from './components/Brands';
+import Domain from './components/Domain';
+import Domains from './components/Domains';
 
 export default {
   name: 'App',
   components: {
     Brand,
-    Brands
+    Brands,
+    Domain,
+    Domains
   },
   data() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -35,11 +45,4 @@ export default {
 </script>
 
 <style lang="scss">
-
-.foo {
-  color:black;
-}
-.bar {
-  @extend .foo;
-}
 </style>

@@ -90,6 +90,10 @@ export default {
 			tableData: Object.keys(this.value).length != this.columns.length ? tableDefault : this.value
 		}
 	},
+	// https://vuejs.org/v2/api/#model
+	// This sets the v-model data key to the 'value' prop
+	// and registers a 'valuechange' eventhandler that can be used
+	// to update the value whenever it is changed 
 	model: {
         prop: 'value',
         event: 'valuechange'

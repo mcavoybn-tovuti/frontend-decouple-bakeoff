@@ -89,7 +89,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"><input type="checkbox"></th>
+                        <th scope="col"><input type="checkbox" @click="toggleCheckAll()" v-model="checkAllChecked"></th>
                         <th scope="col"><a href="#" @click="orderBy('site_title')">Site Title</a></th>
                         <th scope="col"><a href="#" @click="orderBy('language')">Language</a></th>
                         <th scope="col"><a href="#" @click="orderBy('favicon')">Favicon</a></th>
@@ -158,7 +158,8 @@ export default {
             search: {
                 site_title: '',
                 language: ''
-            }
+            },
+            checkAllChecked: false
         }
     },
     beforeMount() {
@@ -238,6 +239,11 @@ export default {
         orderBy(column) {
             this.order.column = column;
             this.getBrands();
+        },
+        toggleCheckAll() {
+            Array.from(document.getElementsByClassName('domain-multiselect-checkbox')).forEach(el => {
+                el.checked = !this.checkAllChecked;
+            });
         }
     }
 }
