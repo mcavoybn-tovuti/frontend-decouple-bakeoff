@@ -127,16 +127,6 @@
         </nav>
         <div class="tab-content ms-4">
             <div id="basic-information" class="tab-pane active show fade mt-4" role="tabpanel">
-                <div class="row mb-4 ">
-                    <div class="col-lg-3 col-xl-2">
-                        Domains
-                    </div>
-                    <div class="col-lg-9 col-xl-10">
-                        <!-- @TODO replace this with domains stuff -->
-                        <div>Domains stuff goes here</div>
-                        <div class="help-block">The domains that the brand is connected to.</div>
-                    </div>
-                </div>
                 <div class="row mb-4">
                     <div class="col-lg-3 col-xl-2">
                         Language
@@ -207,6 +197,69 @@
                                 class="btn btn-outline-secondary"
                             >No</label>
                         </div>
+                    </div>
+                </div>
+                <div class="row mb-4 ">
+                    <div class="col-lg-3 col-xl-2">
+                        Domain field type
+                    </div>
+                    <div class="col-lg-9 col-xl-10">
+                        <div role="group" id="domain_field_type" class="btn-group btn-group rounded">
+                            <input
+                                id="domain_field_type0"
+                                type="radio"
+                                value="legacy"
+                                checked="checked"
+                                class="btn-check"
+                                v-model="domainFieldType"
+                            >			
+                            <label 
+                                for="domain_field_type0"
+                                class="btn btn-outline-success"
+                            >Legacy</label>		
+                            <input
+                                id="domain_field_type1"
+                                type="radio"
+                                value="new"
+                                class="btn-check"
+                                v-model="domainFieldType"
+                            >
+                            <label 
+                                for="domain_field_type1"
+                                class="btn btn-outline-secondary"
+                            >New</label>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row mb-4 " v-if="domainFieldType == 'new'">
+                    <div class="col-lg-3 col-xl-2">
+                        Domains
+                    </div>
+                    <div class="col-lg-9 col-xl-10">
+                        <domains-view></domains-view>
+                        <div class="help-block">The domains that the brand is connected to.</div>
+                    </div>
+                </div>
+                <div class="row mb-4 " v-if="domainFieldType == 'legacy'">
+                    <div class="col-lg-3 col-xl-2">
+                        Domains
+                    </div>
+                    <div class="col-lg-9 col-xl-10">
+                        <modal-table
+                            button-text="Select" 
+                            :columns="[
+                                {
+                                    title: 'Site URL',
+                                    key: 'brand',
+                                    type: 'select',
+                                    options: [
+                                        { text: 'Domain 1', value: '1' },
+                                        { text: 'Domain 2', value: '2' },
+                                    ]
+                                },
+                            ]"
+                        ></modal-table>
+                        <div class="help-block">The domains that the brand is connected to.</div>
                     </div>
                 </div>
             </div>
@@ -314,7 +367,7 @@
                                 type="radio"
                                 id="language_selector0"
                                 name="language_selector"
-                                value="1"
+                                value=""
                                 checked="checked"
                                 class="btn-check"
                                 v-model="brand.site_details.language_selector"
@@ -1227,10 +1280,13 @@ import { default as defaultBrandConfig } from '../assets/defaultBrandConfig.json
 
 import ModalTable from './fields/ModalTable';
 
+import Domains from './Domains';
+
 export default {
     name: 'Brand',
     components: {
-        'modal-table': ModalTable
+        'modal-table': ModalTable,
+        'domains-view': Domains
     },
     data() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -1245,7 +1301,8 @@ export default {
                     }
                 }
             },
-            showSaveSuccessAlert: false
+            showSaveSuccessAlert: false,
+            domainFieldType: 'legacy'
         };
     },
     beforeMount() {

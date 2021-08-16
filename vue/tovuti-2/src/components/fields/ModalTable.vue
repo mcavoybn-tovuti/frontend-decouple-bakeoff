@@ -1,12 +1,12 @@
 <template>
     <div class="modal-table-container">
-		<button type="button" class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		<button type="button" class="btn btn-light border" data-bs-toggle="modal" :data-bs-target="'#' + modalId">
 			<span class="icon-list"></span>
 			{{ buttonText }}
 		</button>
 
 			<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" :id="modalId" tabindex="-1" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 				<div class="modal-header">
@@ -25,21 +25,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="row in tableData[columns[0].key]" :key="tableData[columns[0].key].indexOf(row)">
-								<td>{{tableData[columns[0].key].indexOf(row)}}</td>
+							<tr v-for="row in tableData" :key="row.id">
 								<td 
 									v-for="column in columns" 
 									:key="column.key"
 								>
 									<input 
 										:type="column.type" 
-										v-model="tableData[column.key][tableData[column.key].indexOf(row)]"
+										v-model="row[column.key]"
+										v-if="column.type != 'select'"
 									>
-									{{'tableData['+column.key+'][tableData['+column.key+'].indexOf('+row+')]' }}
+									<select v-else v-model="row[column.key]">
+										<option v-for="option in column.options" :key="option.name" :value="option.value">{{option.text}}</option>
+									</select>
 								</td>
 								<td>
-									<a 
-										@click="() => removeRow(tableData[columns[0].key].indexOf(row))" class="remove btn button btn-danger"><span class="icon-minus"></span> </a>
+									<a @click="removeRow(row.id)" class="remove btn button btn-danger"><span class="icon-minus"></span> </a>
 								</td>
 							</tr>
 						</tbody>
@@ -47,7 +48,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" @click="updateValue">Save changes</button>
+					<button type="button" class="btn btn-primary"  data-bs-dismiss="modal" @click="updateValue">Save changes</button>
 				</div>
 				</div>
 			</div>
@@ -56,6 +57,8 @@
 </template>
 
 <script>
+import { v4 as uuid } from 'uuid';
+
 export default {
 	name: 'ModalTable',
 	props: {
@@ -78,16 +81,12 @@ export default {
 				}
 			],
 		},
-		'value': Object
+		'value': Array
 	},
 	data() {
-		let tableDefault = {};
-		this.columns.forEach(column => {
-			tableDefault[column.key] = [];
-		});
-
 		return {
-			tableData: Object.keys(this.value).length != this.columns.length ? tableDefault : this.value
+			tableData: [],
+			modalId: uuid()
 		}
 	},
 	// https://vuejs.org/v2/api/#model
@@ -113,14 +112,16 @@ export default {
 			this.valueLocal = JSON.parse(JSON.stringify(this.tableData));
 		},
 		addRow() {
+			let row = {
+				id: uuid()
+			};
 			this.columns.forEach(column => {
-				this.tableData[column.key].push('');
+				row[column.key] = '';
 			});
+			this.tableData.push(row);
 		},
-		removeRow(index) {
-			this.columns.forEach(column => {
-				this.tableData[column.key] = this.tableData[column.key].slice(0, index).concat(this.tableData[column.key].slice(index + 1));
-			})
+		removeRow(rowId) {
+			this.tableData = this.tableData.filter(row => row.id != rowId);
 		}
 	}
 }
