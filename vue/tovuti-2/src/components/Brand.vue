@@ -125,7 +125,7 @@
 
             </div>
         </nav>
-        <div class="tab-content">
+        <div class="tab-content ms-4">
             <div id="basic-information" class="tab-pane active show fade mt-4" role="tabpanel">
                 <div class="row mb-4 ">
                     <div class="col-lg-3 col-xl-2">
@@ -362,7 +362,22 @@
                         Admin Email Addresses
                     </div>
                     <div class="col-lg-9 col-xl-10">
-                        Repeatable modal
+                        <modal-table
+                            button-text="Select" 
+                            v-model="brand.billing.admin_emails"
+                            :columns="[
+                                {
+                                    title: 'Admin Name',
+                                    key: 'name',
+                                    type: 'text'
+                                },
+                                {
+                                    title: 'Admin Email',
+                                    key: 'email',
+                                    type: 'text'
+                                }
+                            ]"
+                        ></modal-table>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -1210,8 +1225,13 @@ import { v4 as uuid } from 'uuid';
 
 import { default as defaultBrandConfig } from '../assets/defaultBrandConfig.json';
 
+import ModalTable from './fields/ModalTable';
+
 export default {
     name: 'Brand',
+    components: {
+        'modal-table': ModalTable
+    },
     data() {
         const urlParams = new URLSearchParams(window.location.search);
         return {

@@ -166,7 +166,6 @@ export default {
     },
     methods: {
         getBrands() {
-            console.log('getbrands called');
             var allBrandData = JSON.parse(window.localStorage.getItem('brands'));
 
             allBrandData.sort((a, b) => {
@@ -198,6 +197,7 @@ export default {
         resetBrandsData() {
             window.localStorage.setItem('brands', JSON.stringify(brandsDefault));
             this.brands = window.localStorage.getItem('brands');
+            window.location.reload();
         },
         getBrandUrl(id) {
             return '/administrator/?index.php&option=com_axs&view=brand&id=' + id;

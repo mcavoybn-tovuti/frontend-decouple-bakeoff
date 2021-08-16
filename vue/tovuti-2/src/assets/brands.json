@@ -22,12 +22,7 @@
            "login_page":"1"
         },
         "billing":{
-           "admin_emails":[
-              {
-                 "email":"foo234928@bar2349829.com",
-                 "name":null
-              }
-           ],
+           "admin_emails":{},
            "currency_id":"124",
            "currency_code":"USD",
            "currency_country":"United States",
